@@ -1,0 +1,134 @@
+One to one 
+	person & pancard
+	
+	primary----foreign
+				pancard--id_fk----unique
+	
+	
+Annotation :
+Person  {
+	
+	@id
+	@column
+	id
+	
+	@column
+	name
+	
+	@onetoone(cascade=CType.All)
+	pancard
+
+
+}
+
+PanCard{
+
+	@id
+	@GenericeGenerator(name="gen")
+	@GenertedValue(name="gen", @parameters(@parameter(name="property",value="person")) 
+	id
+	
+	
+	panno;
+	
+	@onetoone(cascade=Cascadetype.All)
+	person
+
+
+
+}
+
+
+uni direction:
+	person
+		pancard
+	pancard
+	
+
+	save(person);
+	//save(pancard);
+
+--
+
+bidirection :
+
+	person
+		pancard
+	pancard
+		person
+
+	//save(person);
+	save(pancard);
+	
+
+xml :	
+	
+		person.hbm.xml
+			<id>
+				<generator==increment
+		
+	
+			<onetoone constraint="true"/>
+	
+		pancard.hbm.xml
+			<id>
+				<generator name="foreign"
+			</>
+	
+			<onetoone>
+				<column name="id">
+					<property class="com.app.Person">
+				</column>
+			</onetoone>
+	
+	
+	
+	
+	
+	
+	restric
+	null
+	no
+	cascade
+		save
+		update
+		delete
+		select
+		
+		select * from product
+		
+			size
+			color
+			brand
+			
+			
+		select * from size	
+	
+	
+
+One to many/many to one
+	employee address
+
+many to many
+	employe certificates
+
+
+Cannot add or update a child row: 
+	a foreign key constraint fails 
+	(`rdmsjoins`.`pancard`, CONSTRAINT `pid` FOREIGN KEY (`id`) REFERENCES `person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+	
+	
+	
+	
+	person
+		pancard
+
+		
+N + 1---imp		
+	
+	
+	
+	
+	
+	
+	
