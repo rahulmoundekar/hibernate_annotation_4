@@ -39,13 +39,26 @@ public class ManytOneTest {
 
 	public void selectAll() {
 		Session session = HibernateUtility.getSession().openSession();
-		session.createCriteria(Employee.class).list().forEach(System.out::println);
+		List<Employee> list = session.createCriteria(Employee.class).list();
+		for (Employee employee : list) {
+			System.out.println(employee);
+			for (Address a : employee.getAddresses()) {
+				System.out.println(a.getId() + "\t" + a.getCity() + "\t" + a.getPincode());
+			}
+		}
+	}
+
+	public void selectAll1() {
+		Session session = HibernateUtility.getSession().openSession();
+		session.createCriteria(Address.class).list().forEach(System.out::println);
 	}
 
 	public static void main(String[] args) {
 		ManytOneTest test = new ManytOneTest();
-		test.save();
+		// test.save();
 		test.selectAll();
+		System.out.println("++++++++++++++++++++++++++");
+		test.selectAll1();
 	}
 
 }

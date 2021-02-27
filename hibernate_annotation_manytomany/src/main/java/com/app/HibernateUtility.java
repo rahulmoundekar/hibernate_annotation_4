@@ -1,4 +1,4 @@
-package com.app.entity;
+package com.app;
 
 import java.util.Properties;
 
@@ -17,17 +17,13 @@ public class HibernateUtility {
 		properties.setProperty("hibernate.connection.username", "root");
 		properties.setProperty("hibernate.connection.password", "root");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		properties.setProperty("hibernate.show_sql", "true");
-		properties.setProperty("hibernate.format_sql", "true");
 
 		Configuration cfg = new Configuration();
 		cfg.setProperties(properties);
 
-		cfg.addAnnotatedClass(Person.class);
-		cfg.addAnnotatedClass(Pancard.class);
 		cfg.addAnnotatedClass(Employee.class);
-		cfg.addAnnotatedClass(Address.class);
-
+		cfg.addAnnotatedClass(Certifications.class);
+		
 		StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
 		registryBuilder.applySettings(cfg.getProperties());
 		ServiceRegistry serviceRegistry = registryBuilder.build();

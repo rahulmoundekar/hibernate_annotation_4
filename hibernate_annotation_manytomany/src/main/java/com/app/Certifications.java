@@ -1,13 +1,15 @@
-package com.app.entity;
+package com.app;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,25 +20,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "address")
-public class Address {
+@Table(name = "certification")
+public class Certifications {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String city;
-	private int pincode;
 
-	/*
-	 * @Column(name = "eid", updatable = false, insertable = false) private int eid;
-	 */
+	private String certificate;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "eid")
-	private Employee employee;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "employee_certification", joinColumns = { @JoinColumn(name = "cid") }, inverseJoinColumns = {
+			@JoinColumn(name = "emp_id") })
+	private List<Employee> employeeList;
 
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", city=" + city + ", pincode=" + pincode + ", employee=" + employee + "]";
+		return "Certifications [id=" + id + ", certificate=" + certificate + "]";
 	}
 }
